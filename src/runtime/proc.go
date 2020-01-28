@@ -130,9 +130,9 @@ func main() {
 	mainStarted = true
 
 	if GOARCH != "wasm" { // no threads on wasm yet, so no sysmon
-		systemstack(func() {
-			newm(sysmon, nil)
-		})
+//		systemstack(func() {
+//			newm(sysmon, nil)
+//		})
 	}
 
 	// Lock the main goroutine onto this, the main OS thread,
@@ -147,7 +147,7 @@ func main() {
 		throw("runtime.main not on m0")
 	}
 
-	doInit(&runtime_inittask) // must be before defer
+//	doInit(&runtime_inittask) // must be before defer
 	if nanotime() == 0 {
 		throw("nanotime returning zero")
 	}
@@ -163,7 +163,7 @@ func main() {
 	// Record when the world started.
 	runtimeInitTime = nanotime()
 
-	gcenable()
+//	gcenable()
 
 	main_init_done = make(chan bool)
 	if iscgo {
@@ -239,7 +239,7 @@ func os_beforeExit() {
 
 // start forcegc helper goroutine
 func init() {
-	go forcegchelper()
+	//go forcegchelper()
 }
 
 func forcegchelper() {

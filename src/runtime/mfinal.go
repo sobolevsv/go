@@ -412,7 +412,7 @@ okarg:
 	nret = round(nret, sys.PtrSize)
 
 	// make sure we have a finalizer goroutine
-	createfing()
+	// createfing()
 
 	systemstack(func() {
 		if !addfinalizer(e.data, (*funcval)(f.data), nret, fint, ot) {
